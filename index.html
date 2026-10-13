@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tayrona National Natural Park</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%8C%B4%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="preload" as="image" href="assets/img/tairona/cabo-san-juan-palmeras.jpg" />
+</head>
+<body>
+  <main class="scene-wrap">
+    <!-- Two photo layers that cross-fade between scenes -->
+    <div class="backdrop" aria-hidden="true">
+      <div class="bg-layer"></div>
+      <div class="bg-layer"></div>
+      <div class="backdrop__scrim"></div>
+    </div>
+
+    <!-- Opening scene -->
+    <div id="hero" class="hero">
+      <p class="hero__eyebrow">A touristic place in Colombia</p>
+      <h1 class="hero__title">Tayrona <span>National Natural Park</span></h1>
+      <p class="hero__sub">Magdalena &middot; Caribbean Coast</p>
+      <ul class="guides" aria-label="Your tour guides">
+        <li class="guide" style="--speaker: var(--c-yined)"><img src="assets/img/personajes/yined-face.jpg" alt="" /><span>Yined</span></li>
+        <li class="guide" style="--speaker: var(--c-majo)"><img src="assets/img/personajes/majo-face.jpg" alt="" /><span>Majo</span></li>
+        <li class="guide" style="--speaker: var(--c-dari)"><img src="assets/img/personajes/dari-face.jpg" alt="" /><span>Dari</span></li>
+        <li class="guide" style="--speaker: var(--c-dani)"><img src="assets/img/personajes/dani-face.jpg" alt="" /><span>Dani</span></li>
+      </ul>
+      <p class="guides__label">Your tour guides</p>
+      <button id="startBtn" class="btn btn--sun hero__btn" type="button">Start the Tour</button>
+    </div>
+
+    <!-- Closing scene -->
+    <div id="outro" class="hero hero--outro hidden">
+      <p class="hero__eyebrow">Tayrona National Natural Park</p>
+      <h2 class="hero__title">Thank <span>you!</span></h2>
+      <p class="hero__sub">See you in Tayrona &#127796;</p>
+      <ul class="guides" aria-label="Your tour guides">
+        <li class="guide" style="--speaker: var(--c-yined)"><img src="assets/img/personajes/yined-face.jpg" alt="" /><span>Yined</span></li>
+        <li class="guide" style="--speaker: var(--c-majo)"><img src="assets/img/personajes/majo-face.jpg" alt="" /><span>Majo</span></li>
+        <li class="guide" style="--speaker: var(--c-dari)"><img src="assets/img/personajes/dari-face.jpg" alt="" /><span>Dari</span></li>
+        <li class="guide" style="--speaker: var(--c-dani)"><img src="assets/img/personajes/dani-face.jpg" alt="" /><span>Dani</span></li>
+      </ul>
+      <button id="againBtn" class="btn btn--sun hero__btn" type="button">Start Again &#8635;</button>
+    </div>
+
+    <!-- Section badge -->
+    <div id="badge" class="badge hidden">
+      <span id="badgeNum" class="badge__num">Part 1</span>
+      <span id="badgeTitle" class="badge__title">Why Tayrona?</span>
+    </div>
+
+    <!-- Polaroid with the whole (mostly vertical) photo -->
+    <figure id="photoCard" class="photo-card hidden">
+      <img id="photoImg" class="photo-card__img" src="" alt="" draggable="false" />
+      <figcaption id="photoCaption" class="photo-card__caption"></figcaption>
+    </figure>
+
+    <!-- Poster card: one drawing / graphic per section -->
+    <div id="poster" class="poster hidden">
+
+      <!-- Why: a drawing of the three landscapes -->
+      <section class="graphic graphic--reveal" data-graphic="why">
+        <p class="graphic__ribbon" data-step="0">&#9733; One of Colombia's natural treasures &#9733;</p>
+        <svg class="drawing" viewBox="0 0 400 250" role="img" aria-label="Drawing: the Sierra Nevada mountains, the jungle and the Caribbean Sea">
+          <defs>
+            <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#8fd3f0" />
+              <stop offset="1" stop-color="#e8f7fb" />
+            </linearGradient>
+            <linearGradient id="seaG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#2bb7c6" />
+              <stop offset="1" stop-color="#127c95" />
+            </linearGradient>
+          </defs>
+          <rect width="400" height="250" rx="14" fill="url(#skyG)" />
+          <circle cx="330" cy="52" r="22" fill="#ffd166" />
+          <circle cx="330" cy="52" r="32" fill="#ffd166" opacity="0.25" />
+          <!-- Sierra Nevada -->
+          <path d="M0 150 L70 62 L105 100 L150 34 L205 112 L245 70 L300 140 L0 140 Z" fill="#7d93a8" />
+          <path d="M150 34 L131 60 L142 56 L151 66 L160 55 L170 62 Z M70 62 L58 78 L68 75 L75 82 L84 79 Z M245 70 L234 84 L243 82 L250 88 L258 85 Z" fill="#ffffff" />
+          <!-- Jungle hills -->
+          <path d="M0 175 Q50 120 110 150 Q160 115 215 152 Q250 140 270 165 L270 250 L0 250 Z" fill="#2f8a4e" />
+          <path d="M0 200 Q60 160 130 188 Q190 165 250 196 L260 250 L0 250 Z" fill="#1f6b3b" />
+          <g fill="#164d2b">
+            <circle cx="40" cy="168" r="14" /><circle cx="58" cy="160" r="12" /><circle cx="95" cy="176" r="15" />
+            <circle cx="150" cy="168" r="13" /><circle cx="175" cy="174" r="15" /><circle cx="212" cy="182" r="12" />
+          </g>
+          <!-- Palm -->
+          <path d="M232 238 Q236 205 246 178" stroke="#7a5230" stroke-width="5" fill="none" stroke-linecap="round" />
+          <g fill="#2f8a4e">
+            <path d="M246 178 Q222 168 210 182 Q228 174 246 180 Z" />
+            <path d="M246 178 Q268 164 284 178 Q264 172 246 180 Z" />
+            <path d="M246 178 Q240 156 224 152 Q244 162 247 178 Z" />
+            <path d="M246 178 Q256 154 274 152 Q254 164 247 178 Z" />
+          </g>
+          <!-- Caribbean Sea -->
+          <path d="M250 150 L400 150 L400 250 L250 250 Q270 210 250 150 Z" fill="url(#seaG)" />
+          <path d="M282 172 q10 -6 20 0 t20 0 M330 196 q10 -6 20 0 t20 0 M290 222 q10 -6 20 0 t20 0" stroke="#e8fbff" stroke-width="2.4" fill="none" stroke-linecap="round" />
+          <path d="M250 150 Q270 210 250 250 L238 250 Q258 205 240 150 Z" fill="#f3dfb0" />
+
+          <!-- Labels -->
+          <g class="drawing__label" data-step="1">
+            <line x1="150" y1="30" x2="150" y2="14" />
+            <rect x="72" y="0" width="156" height="20" rx="10" />
+            <text x="150" y="14">Sierra Nevada</text>
+          </g>
+          <g class="drawing__label" data-step="1">
+            <line x1="90" y1="196" x2="90" y2="214" />
+            <rect x="46" y="214" width="88" height="22" rx="11" />
+            <text x="90" y="229">Jungle</text>
+          </g>
+          <g class="drawing__label" data-step="1">
+            <line x1="340" y1="186" x2="340" y2="200" />
+            <rect x="282" y="200" width="116" height="22" rx="11" />
+            <text x="340" y="215">Caribbean Sea</text>
+          </g>
+        </svg>
+        <ul class="chips" data-step="1">
+          <li>&#127807; lush green jungle</li>
+          <li>&#127754; crystal-clear water</li>
+          <li>&#9968;&#65039; majestic mountains</li>
+        </ul>
+      </section>
+
+      <!-- Where: a map of Colombia -->
+      <section class="graphic graphic--reveal" data-graphic="where">
+        <svg class="map" viewBox="0 0 440 470" role="img" aria-label="Map of Colombia showing Tayrona, 34 kilometers from Santa Marta">
+          <text class="map__sea" x="22" y="38">Caribbean Sea</text>
+          <text class="map__sea" x="18" y="250" transform="rotate(-90 18 250)">Pacific Ocean</text>
+          <path class="map__land" d="M224 24 L237 33 L232 41 L209 58 L192 76 L186 109 L194 111 L199 129 L205 140 L205 155 L218 166 L241 166 L264 167 L283 189 L303 187 L323 184 L332 192 L329 213 L324 231 L329 252 L337 259 L323 274 L340 288 L348 317 L335 296 L314 302 L272 304 L277 319 L288 332 L267 332 L267 352 L277 363 L283 379 L270 457 L259 447 L249 441 L264 418 L228 408 L192 412 L173 382 L142 356 L129 350 L116 345 L98 340 L75 337 L56 324 L38 310 L33 302 L43 283 L62 279 L72 259 L77 246 L75 228 L77 205 L72 176 L62 161 L80 142 L75 122 L88 124 L92 139 L103 116 L120 102 L121 88 L124 76 L132 66 L141 59 L157 62 L158 55 L168 53 L181 55 L192 48 L210 38 L216 31 Z" />
+          <!-- Caribbean coastline, highlighted -->
+          <path class="map__coast" d="M80 142 L75 122 L88 124 L92 139 L103 116 L120 102 L121 88 L124 76 L132 66 L141 59 L157 62 L158 55 L168 53 L181 55 L192 48 L210 38 L216 31 L224 24" />
+          <text class="map__country" x="175" y="290">COLOMBIA</text>
+          <circle class="map__city" cx="161" cy="225" r="4" />
+          <text class="map__cityname" x="170" y="229">Bogotá</text>
+
+          <g class="map__pin" data-step="0">
+            <circle cx="164" cy="54" r="14" class="map__pulse" />
+            <path d="M164 56 c-9 -10 -13 -16 -13 -22 a13 13 0 0 1 26 0 c0 6 -4 12 -13 22 z" transform="translate(0 -4)" />
+            <circle cx="164" cy="30" r="4.5" fill="#fff" />
+          </g>
+
+          <!-- Zoomed inset: Santa Marta to Tayrona -->
+          <g class="map__inset" data-step="1">
+            <line class="map__leader" x1="176" y1="46" x2="292" y2="70" />
+            <rect x="292" y="20" width="140" height="138" rx="12" class="map__inset-box" />
+            <path d="M292 32 a12 12 0 0 1 12 -12 h116 a12 12 0 0 1 12 12 v42 Q400 70 372 76 Q340 84 318 78 Q300 74 292 86 Z" fill="#bfe9f1" />
+            <circle cx="324" cy="98" r="5" class="map__city" />
+            <text class="map__inset-text" x="336" y="119">Santa Marta</text>
+            <path d="M328 93 Q352 64 384 70" class="map__route" />
+            <text class="map__km" x="354" y="62">34 km</text>
+            <path d="M388 78 c-6 -7 -9 -11 -9 -15 a9 9 0 0 1 18 0 c0 4 -3 8 -9 15 z" class="map__pin-small" />
+            <text class="map__inset-text map__inset-text--bold" x="388" y="96">Tayrona</text>
+            <text class="map__inset-title" x="362" y="146">Magdalena</text>
+          </g>
+        </svg>
+        <dl class="facts" data-step="1">
+          <div><dt>Region</dt><dd>Caribbean coast</dd></div>
+          <div><dt>Department</dt><dd>Magdalena</dd></div>
+          <div><dt>From Santa Marta</dt><dd>about 34 km</dd></div>
+        </dl>
+      </section>
+
+      <!-- How: route diagram -->
+      <section class="graphic graphic--reveal" data-graphic="how">
+        <h3 class="graphic__title">Getting there</h3>
+        <ol class="route">
+          <li class="route__stop" data-step="0"><span class="route__icon">&#127961;&#65039;</span><b>Santa Marta</b><small>the closest city</small></li>
+          <li class="route__leg" data-step="0"><span>&#128652; bus</span><span>&#128661; taxi</span></li>
+          <li class="route__stop" data-step="0"><span class="route__icon">&#128678;</span><b>Park entrances</b><small>El Zaino &middot; Calabazo</small></li>
+          <li class="route__leg" data-step="1"><span>&#129406; hike</span></li>
+          <li class="route__stop" data-step="1"><span class="route__icon">&#127796;</span><b>Tropical forest</b><small>trails to the beaches</small></li>
+        </ol>
+        <div class="route__alt" data-step="1">
+          <span class="route__or">or</span>
+          <span class="route__boat">&#128741;&#65039; short boat ride &middot; <b>Taganga</b> &#8644; <b>Cabo San Juan</b></span>
+        </div>
+      </section>
+
+      <!-- Things to do: activity tiles -->
+      <section class="graphic graphic--progress" data-graphic="todo">
+        <h3 class="graphic__title">Things to do</h3>
+        <ul class="tiles">
+          <li class="tile" data-step="0"><span class="tile__icon">&#129406;</span><b>Hike</b><small>tropical trails</small></li>
+          <li class="tile" data-step="1"><span class="tile__icon">&#127946;</span><b>Swim</b><small>Cabo San Juan &middot; La Piscina &middot; Playa Cristal</small></li>
+          <li class="tile" data-step="2"><span class="tile__icon">&#128018;</span><b>Wildlife</b><small>monkeys &amp; colorful birds</small></li>
+          <li class="tile" data-step="3"><span class="tile__icon">&#129343;</span><b>Snorkel</b><small>&amp; scuba dive</small></li>
+        </ul>
+      </section>
+
+      <!-- Recommendations: packing checklist -->
+      <section class="graphic graphic--progress" data-graphic="tips">
+        <h3 class="graphic__title">Our recommendations</h3>
+        <ul class="checklist">
+          <li class="check" data-step="0" style="--speaker: var(--c-yined)">
+            <svg class="check__box" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" /><path d="M6 12.5 l4 4 l8 -9" /></svg>
+            <span class="check__icon">&#128095;</span>
+            <span class="check__text">Hiking shoes, light clothing &amp; a swimsuit</span>
+          </li>
+          <li class="check" data-step="1" style="--speaker: var(--c-majo)">
+            <svg class="check__box" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" /><path d="M6 12.5 l4 4 l8 -9" /></svg>
+            <span class="check__icon">&#129524;</span>
+            <span class="check__text">Biodegradable sunscreen, insect repellent &amp; a hat</span>
+          </li>
+          <li class="check" data-step="2" style="--speaker: var(--c-dari)">
+            <svg class="check__box" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" /><path d="M6 12.5 l4 4 l8 -9" /></svg>
+            <span class="check__icon">&#128167;</span>
+            <span class="check__text">Enough drinking water</span>
+          </li>
+          <li class="check" data-step="3" style="--speaker: var(--c-dani)">
+            <svg class="check__box" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" /><path d="M6 12.5 l4 4 l8 -9" /></svg>
+            <span class="check__icon">&#9851;&#65039;</span>
+            <span class="check__text">Respect nature &mdash; no trash left behind</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Dialogue bar -->
+    <div id="dialogue" class="dialogue hidden">
+      <img id="dialogueAvatar" class="dialogue__avatar" src="assets/img/personajes/yined-face.jpg" alt="Speaker" />
+      <div class="dialogue__body">
+        <span id="dialogueName" class="dialogue__name">Yined</span>
+        <p id="dialogueText" class="dialogue__text"></p>
+      </div>
+      <button id="nextBtn" class="btn btn--sun dialogue__next" type="button">Next</button>
+    </div>
+  </main>
+
+  <button id="backBtn" class="btn btn--jungle back-btn hidden" type="button">&#8592; Back</button>
+  <button id="menuBtn" class="btn btn--jungle menu-btn" type="button" aria-label="Go to a section">&#128205;</button>
+  <button id="musicBtn" class="btn btn--jungle music-btn" type="button" aria-label="Muted audio" title="Muted audio">&#128263;</button>
+  <button id="fullscreenBtn" class="btn btn--jungle fullscreen-btn hidden" type="button"
+          aria-label="Enter full screen" title="Full screen">&#9974;</button>
+  <button id="timer" class="timer hidden" type="button" title="Click to reset">&#9201; 0:00</button>
+  <button id="creditsBtn" class="credits-btn" type="button">Sources &amp; Credits</button>
+
+  <div id="sceneMenu" class="overlay hidden" role="dialog" aria-modal="true" aria-label="Section selector">
+    <div class="panel">
+      <button id="closeMenuBtn" class="panel__close" type="button" aria-label="Close">&#10005;</button>
+      <h2 class="panel__title">Jump to a Section</h2>
+      <div class="panel__list">
+        <button class="panel__item" data-target="0">&#127796; Start &ndash; Tayrona</button>
+        <button class="panel__item" data-target="1">&#11088; Why Tayrona? &middot; Yined</button>
+        <button class="panel__item" data-target="2">&#128205; Where is it? &middot; Majo</button>
+        <button class="panel__item" data-target="3">&#128652; How to get there? &middot; Dari</button>
+        <button class="panel__item" data-target="4">&#129406; Things to do &middot; Dani</button>
+        <button class="panel__item" data-target="5">&#9989; Recommendations &middot; All</button>
+        <button class="panel__item" data-target="6">&#127749; Thank you!</button>
+      </div>
+      <button id="timerToggle" class="panel__toggle" type="button">&#9201; Show timer</button>
+    </div>
+  </div>
+
+  <div id="creditsOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-label="Credits and sources">
+    <div class="panel panel--credits">
+      <button id="closeCreditsBtn" class="panel__close" type="button" aria-label="Close">&#10005;</button>
+      <h2 class="panel__title">Sources &amp; Credits</h2>
+
+      <div class="credits__section">
+        <h3 class="credits__heading">Project</h3>
+        <p class="credits__text">Touristic Place &mdash; English class presentation</p>
+      </div>
+
+      <div class="credits__section">
+        <h3 class="credits__heading">Tour guides</h3>
+        <p class="credits__text">Yined &middot; Majo &middot; Dari &middot; Dani</p>
+      </div>
+
+      <div class="credits__section">
+        <h3 class="credits__heading">Photos</h3>
+        <p class="credits__text">Polaroids: @julianato21 (TikTok), member of the group</p>
+        <p class="credits__text">Backgrounds: Wikimedia Commons, used under their Creative Commons licenses (resized)</p>
+        <ul class="credits__list">
+          <li><b>Start</b> &middot; Cabo San Juan, image from the web (source to be confirmed)</li>
+          <li><b>Why</b> &middot; <a href="https://commons.wikimedia.org/wiki/File:Cabo_San_Juan_Mountain_View_(2024).jpg" target="_blank" rel="noopener">Gar.camila.cia</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+          <li><b>Where</b> &middot; Cabo San Juan from a drone, image from the web (source to be confirmed)</li>
+          <li><b>How</b> &middot; <a href="https://commons.wikimedia.org/wiki/File:Sendero_Natural_PNN_El_Tayrona.jpg" target="_blank" rel="noopener">Niop90</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+          <li><b>Hike</b> &middot; palm-tree trail, image from the web (source to be confirmed)</li>
+          <li><b>Swim</b> &middot; Cabo San Juan beach, image from the web (source to be confirmed)</li>
+          <li><b>Wildlife</b> &middot; <a href="https://commons.wikimedia.org/wiki/File:Colombian_white-faced_capuchin_(Cebus_capucinus).jpg" target="_blank" rel="noopener">Hobbyfotowiki</a>, <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a></li>
+          <li><b>Snorkel</b> &middot; Freepik (illustrative image, not taken in Tayrona)</li>
+          <li><b>Tip 1</b> &middot; <a href="https://commons.wikimedia.org/wiki/File:Recorrida_por_el_Parque_Nacional_Natural_Tayrona_-_6.jpg" target="_blank" rel="noopener">TitiNicola</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+          <li><b>Tip 2</b> &middot; <a href="https://commons.wikimedia.org/wiki/File:Playa_Parque_Tayrona.jpg" target="_blank" rel="noopener">Supertita</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+          <li><b>Tip 3</b> &middot; <a href="https://commons.wikimedia.org/wiki/File:Coastal_lagoon_with_Typha_marsh_and_coconut_palms_in_Tayrona_National_Park,_2026.jpg" target="_blank" rel="noopener">Mottenpriesterin</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+          <li><b>Tip 4</b> &middot; <a href="https://commons.wikimedia.org/wiki/File:Coastal_Lagune_in_the_Tayrona_National_Park,_Magdalena_Department,_Colombia.jpg" target="_blank" rel="noopener">Mottenpriesterin</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+          <li><b>The End</b> &middot; <a href="https://commons.wikimedia.org/wiki/File:Sunrise_3_Parque_Nacional_Natural_Tayrona.jpg" target="_blank" rel="noopener">Thomas Fuhrmann</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        </ul>
+      </div>
+
+      <div class="credits__section">
+        <h3 class="credits__heading">Music</h3>
+        <p class="credits__text">assets/music/sonid.mp3</p>
+      </div>
+
+      <div class="credits__section">
+        <h3 class="credits__heading">Drawings &amp; Graphics</h3>
+        <p class="credits__text">Map, route, landscape and checklist drawn for this presentation</p>
+      </div>
+
+      <p class="credits__author">Ideas, design &amp; creation &middot; Yined Molina</p>
+    </div>
+  </div>
+
+  <div class="rotate-overlay" aria-hidden="true">
+    <div class="rotate-overlay__phone">&#128241;</div>
+    <p class="rotate-overlay__text">Rotate your device</p>
+    <p class="rotate-overlay__sub">This experience requires landscape orientation</p>
+  </div>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
